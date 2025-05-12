@@ -1,24 +1,17 @@
-import {useState} from "react";
+import useAllProducts from "../hooks/useAllProducts.jsx";
 
 export default function HomePage() {
 
-    const [count, setCount] = useState(0)
+    const {products} = useAllProducts();
 
     return (
         <>
-
-            <h1>Vite + React</h1>
-            <div className="card">
-                <button onClick={() => setCount((count) => count + 1)}>
-                    count is {count}
-                </button>
-                <p>
-                    Edit <code>src/App.jsx</code> and save to test HMR
-                </p>
-            </div>
-            <p className="read-the-docs">
-                Click on the Vite and React logos to learn more
-            </p>
+            <h1>Let's find a catchy sentence later</h1>
+            <ul>
+                {products && products.map((product) => (
+                    <li key={product.id}>{product.title}</li>
+                ))}
+            </ul>
         </>
     )
 }
